@@ -1,0 +1,102 @@
+@{
+    ViewData["Title"] = "Control de Luz";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .circulo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: auto;
+            transition: background-color 0.5s;
+        }
+        .leyenda {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .color-circulo {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .mensajes {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Control de Luz del Tráfico Vehicular</h1>
+        <h2 id="horaActual">Hora Actual: @ViewBag.HoraActual:00</h2>
+        <div id="circulo" class="circulo" style="background-color: @( 
+            (ViewBag.HoraActual >= 1 && ViewBag.HoraActual < 6) ? "green" :
+            (ViewBag.HoraActual >= 7 && ViewBag.HoraActual < 9) ? "red" :
+            (ViewBag.HoraActual >= 9 && ViewBag.HoraActual < 12) ? "yellow" :
+            (ViewBag.HoraActual >= 12 && ViewBag.HoraActual < 14) ? "red" :
+            (ViewBag.HoraActual >= 15 && ViewBag.HoraActual < 16) ? "green" :
+            (ViewBag.HoraActual >= 17 && ViewBag.HoraActual < 19) ? "red" :
+            "yellow")"></div>
+        <p>Este sistema muestra el estado del tráfico vehicular según la hora del día.</p>
+        
+        <!-- Leyenda -->
+        <div class="leyenda">
+            <div class="color-circulo" style="background-color: green;"></div>
+            <span>Poco tráfico</span>
+        </div>
+        <div class="leyenda">
+            <div class="color-circulo" style="background-color: yellow;"></div>
+            <span>Tráfico medio</span>
+        </div>
+        <div class="leyenda">
+            <div class="color-circulo" style="background-color: red;"></div>
+            <span>Full tráfico</span>
+        </div>
+
+        <!-- Contenedor de mensajes -->
+        <div class="mensajes" id="mensajes"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function actualizarHora() {
+            $.ajax({
+                url: '/ControladorDeLuz/GetCurrentHour',
+                type: 'GET',
+                success: function(data) {
+                    const horaActual = data.horaActual;
+                    document.getElementById('horaActual').innerText = `Hora Actual: ${horaActual.toString().padStart(2, '0')}:00`;
+                    const circulo = document.getElementById('circulo');
+                    circulo.style.backgroundColor = (horaActual >= 1 && horaActual < 6) ? "green" :
+                                                     (horaActual >= 7 && horaActual < 9) ? "red" :
+                                                     (horaActual >= 9 && horaActual < 12) ? "yellow" :
+                                                     (horaActual >= 12 && horaActual < 14) ? "red" :
+                                                     (horaActual >= 15 && horaActual < 16) ? "green" :
+                                                     (horaActual >= 17 && horaActual < 19) ? "red" :
+                                                     "yellow";
+
+                    const mensajesDiv = document.getElementById('mensajes');
+                    mensajesDiv.innerHTML = `<p><strong>Son las ${horaActual % 12 === 0 ? 12 : horaActual % 12} ${horaActual < 12 ? 'AM' : 'PM'}</strong></p>`;
+                    if (horaActual < 23) {
+                        mensajesDiv.innerHTML += `<p>Esperando las ${(horaActual + 1) % 12 === 0 ? 12 : (horaActual + 1) % 12} ${horaActual + 1 < 12 ? 'AM' : 'PM'}</p>`;
+                    }
+                }
+            });
+        }
+
+        // Llama a la función cada 2 segundos (2000 ms)
+        setInterval(actualizarHora, 2000);
+    </script>
+</body>
+</html>

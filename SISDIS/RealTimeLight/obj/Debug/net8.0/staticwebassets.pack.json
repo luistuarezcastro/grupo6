@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\CompuStore\\Desktop\\SISDIS\\RealTimeLight\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\RealTimeLight.bundle.scp.css",
+      "PackagePath": "staticwebassets\\RealTimeLight.bundle.scp.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.RealTimeLight.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.RealTimeLight.props",
+      "PackagePath": "build\\RealTimeLight.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.RealTimeLight.props",
+      "PackagePath": "buildMultiTargeting\\RealTimeLight.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.RealTimeLight.props",
+      "PackagePath": "buildTransitive\\RealTimeLight.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

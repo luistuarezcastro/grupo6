@@ -1,0 +1,50 @@
+{
+  "Version": 1,
+  "Hash": "4a0MYx5Ip40RASawPf/bArDO+CQweQdUtiulubEs3Vo=",
+  "Source": "RealTimeLight",
+  "BasePath": "_content/RealTimeLight",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\CompuStore\\Desktop\\SISDIS\\RealTimeLight\\obj\\Debug\\net8.0\\scopedcss\\bundle\\RealTimeLight.styles.css",
+      "SourceId": "RealTimeLight",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\CompuStore\\Desktop\\SISDIS\\RealTimeLight\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/RealTimeLight",
+      "RelativePath": "RealTimeLight.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\CompuStore\\Desktop\\SISDIS\\RealTimeLight\\obj\\Debug\\net8.0\\scopedcss\\bundle\\RealTimeLight.styles.css"
+    },
+    {
+      "Identity": "C:\\Users\\CompuStore\\Desktop\\SISDIS\\RealTimeLight\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\RealTimeLight.bundle.scp.css",
+      "SourceId": "RealTimeLight",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\CompuStore\\Desktop\\SISDIS\\RealTimeLight\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/RealTimeLight",
+      "RelativePath": "RealTimeLight.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\CompuStore\\Desktop\\SISDIS\\RealTimeLight\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\RealTimeLight.bundle.scp.css"
+    }
+  ]
+}
