@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat en Tiempo Real Python</title>
+<!--carga la biblioteca Socket.io DE LADO DELCLIENTE QUE PERMITA LA COMUNICACION-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <style>
+        /* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f8ff; /* Azul muy suave */
+    color: #333; /* Gris oscuro para el texto */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    color: #ff4081; /* Color rosa fuerte */
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+input[type="text"] {
+    width: 300px;
+    padding: 15px;
+    border: 2px solid #ff4081;
+    border-radius: 30px;
+    outline: none;
+    font-size: 16px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #6200ea; /* Morado */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+button {
+    background-color: #6200ea; /* Morado fuerte */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #3700b3; /* Morado más oscuro al pasar el mouse */
+    transform: translateY(-2px); /* Efecto de levantarse */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    max-width: 400px;
+    margin: 30px auto;
+}
+
+li {
+    background-color: #ffe0f0; /* Rosa suave */
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 20px;
+    color: #6200ea;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+li:hover {
+    transform: translateY(-3px); /* Efecto de levantarse al pasar el mouse */
+}
+
+/* Añadir estilo para pantallas pequeñas */
+@media (max-width: 600px) {
+    input[type="text"], button {
+        width: 90%;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <h1>Enviar Mensaje en Tiempo Real PYTHON</h1>
+    <input type="text" id="messageInput" placeholder="Escribe tu mensaje...">
+    <button onclick="sendMessage()">Enviar</button>
+
+    <ul id="messages"></ul>
+
+    <script>
+        //Esta linea estable la conexion con el servidor en 
+        //tiempo real en la direccion local en donde correo servidor Flask
+        var socket = io.connect('http://localhost:5000');
+
+        // Recibe mensajes del servidor, socket.on escucha del 
+        //servidor que se envia cada vez que alguien envia un mensaje
+        //cada vez que el servidor emite un mensaje de respuesta, el cliente
+        //lo recibe inmediantamente y lo muetsra en la interfaz
+        socket.on('response', function(msg) {
+            var li = document.createElement('li');
+            li.textContent = msg.data;
+            document.getElementById('messages').appendChild(li);
+        });
+
+        // Envía mensajes al servidor cuando el usuario escriibe un mensaje y hace clc en enviar
+        // el mesaje se envia al servidor en tiempo real
+        function sendMessage() {
+            var input = document.getElementById('messageInput').value;
+            socket.send(input);
+            document.getElementById('messageInput').value = '';  // Limpia el campo después de enviar el mensaje
+        }
+    </script>
+</body>
+</html>
